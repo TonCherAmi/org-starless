@@ -38,4 +38,6 @@
         (font-lock-remove-keywords nil keyword)
         (font-lock-fontify-buffer)))))
 
+(provide 'org-starless)
+
 ;;; org-starless.el ends here
