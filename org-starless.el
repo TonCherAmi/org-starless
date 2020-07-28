@@ -26,7 +26,7 @@
   "Starless org-mode"
   nil nil nil
   (let* ((keyword
-          `(("^\\(\\*+\\) .+"
+          `(("^\\(\\*+ \\).+"
              (1 (put-text-property (match-beginning 1) (match-end 1) 'invisible t)
                 nil)))))
     (if org-starless-mode
