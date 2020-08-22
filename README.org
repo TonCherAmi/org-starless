@@ -1,0 +1,14 @@
+* org-starless
+This package hides org-mode heading stars.
+** Installation
+Using use-package + quelpa:
+ #+BEGIN_SRC elisp
+  (use-package org-starless
+    :quelpa (org-starless :repo "TonCherAmi/org-starless" :fetcher github))
+ #+END_SRC
+Alternatively you can just download the archive and manually ~require~ the package.
+** Configuration
+There are no configurable options, you only need to enable the minor mode:
+ #+BEGIN_SRC elisp
+  (add-hook 'org-mode-hook #'org-starless-mode)
+ #+END_SRC
