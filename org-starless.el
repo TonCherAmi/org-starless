@@ -1,7 +1,11 @@
 ;;; org-starless.el --- Hide stars in org-mode
-;;; Version: 0.0.1
-;;; Author: TonCherAmi
-;;; URL: https://github.com/TonCherAmi/org-starless
+
+;; Copyright (C) 2020 TonCherAmi
+
+;; Author: TonCherAmi
+;; URL: https://github.com/TonCherAmi/org-starless
+;; Version: 0.0.2
+;; Package-Requires: ((emacs "25.1"))
 
 ;; This file is NOT part of GNU Emacs.
 ;;
@@ -20,11 +24,16 @@
 ;; the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 ;; Boston, MA 02111-1307, USA.
 
+;;; Commentary:
+
+;; This package hides org-mode heading stars.
+
 ;;; Code:
 
 (define-minor-mode org-starless-mode
   "Starless org-mode"
   nil nil nil
+  :require 'org
   (let* ((keyword
           `(("^\\(\\*+ \\).+"
              (1 (put-text-property (match-beginning 1) (match-end 1) 'invisible t)
@@ -32,11 +41,13 @@
     (if org-starless-mode
         (progn
           (font-lock-add-keywords nil keyword)
-          (font-lock-fontify-buffer))
+          (font-lock-ensure)
+          (font-lock-flush))
       (save-excursion
         (goto-char (point-min))
         (font-lock-remove-keywords nil keyword)
-        (font-lock-fontify-buffer)))))
+        (font-lock-ensure)
+        (font-lock-flush)))))
 
 (provide 'org-starless)
 
